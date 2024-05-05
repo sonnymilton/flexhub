@@ -1,0 +1,7 @@
+framework:
+    cache:
+        default_redis_provider: "%env(REDIS_URL)%"
+        pools:
+            flex.cache:
+                adapter: cache.adapter.redis
+                tags: true

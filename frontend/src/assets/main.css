@@ -1,0 +1,9 @@
+.toast {--bs-toast-max-width: '500px'}
+
+.white-space-pre-line {
+    white-space: pre-line;
+}
+
+.max-width-fit-content {
+    max-width: fit-content;
+}
