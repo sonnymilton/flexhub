@@ -102,7 +102,7 @@ spec:
     }
 }
 ```
-* Replace `https://flexhub.yourhost.lan` with the host on which your flexible recipe server is deployed.
+* Replace `https://flexhub.yourhost.lan` with the host on which your flex recipes server is deployed.
 * The `extra.symfony` key will most probably already exist in `your composer.json`. In that case, add the `"endpoint"` key to the existing `extra.symfony` entry.
 
 
