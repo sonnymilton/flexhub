@@ -1,6 +1,7 @@
 # Flexhub
+[![App build](https://github.com/sonnymilton/flexhub/actions/workflows/app_build.yml/badge.svg)](https://github.com/sonnymilton/flexhub/actions/workflows/app_build.yml)
 
-A private repository of [Symfony Flex recipes](https://symfony.com/doc/current/setup/flex_private_recipes.html)
+Flexhub is a private repository of [Symfony Flex recipes](https://symfony.com/doc/current/setup/flex_private_recipes.html)
 available for deployment on your infrastructure. Compatible
 with [Flex serverless](https://symfony.com/blog/symfony-flex-is-going-serverless).
 
