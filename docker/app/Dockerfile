@@ -8,11 +8,10 @@ FROM php:8.2-fpm
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN apt update -y && \
-    apt install -y zip libzip-dev libpq-dev libicu-dev nginx &&\
+    apt install -y zip libzip-dev libpq-dev libicu-dev nginx supervisor &&\
     docker-php-ext-install zip pdo pdo_pgsql intl opcache && \
     pecl install redis && \
     docker-php-ext-enable redis
-
 
 COPY /docker/app/php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
@@ -26,6 +25,8 @@ COPY --chown=www-data:www-data /backend /application
 COPY /docker/app/php/opcache.ini $PHP_INI_DIR/conf.d
 
 COPY /docker/app/nginx/flex-server.conf /etc/nginx/conf.d/
+
+COPY /docker/app/supervisor/messenger-worker.conf /etc/supervisor/conf.d/messenger-worker.conf
 
 WORKDIR /application
 

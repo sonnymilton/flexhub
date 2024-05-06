@@ -14,6 +14,7 @@ framework:
                  dsn: '%app.messenger.redis_dsn%'
                  options:
                      serializer: !php/const Redis::SERIALIZER_NONE
+                     consumer:  '%env(MESSENGER_CONSUMER_NAME)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
