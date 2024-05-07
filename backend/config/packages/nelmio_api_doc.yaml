@@ -1,0 +1,11 @@
+nelmio_api_doc:
+    html_config:
+        assets_mode: cdn
+    documentation:
+        info:
+            title: My App
+            description: This is an awesome app!
+            version: 1.0.0
+    areas: # to filter documented areas
+        path_patterns:
+            - ^\/api(?!\/doc$|\/_wdt\/|\/_profiler\/) # Accepts routes under /api except /api/doc, /api/_wdt/*, /api/_profiler/*
