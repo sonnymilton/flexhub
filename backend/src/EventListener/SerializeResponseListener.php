@@ -30,6 +30,7 @@ final readonly class SerializeResponseListener
 
         $statusCode = match ($request->getMethod()) {
             'POST' => Response::HTTP_CREATED,
+            'DELETE' => Response::HTTP_NO_CONTENT,
             default => Response::HTTP_OK,
         };
 

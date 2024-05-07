@@ -4,7 +4,7 @@
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+/public/api/assets/bundles
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -26,7 +26,3 @@ phpstan.neon
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
