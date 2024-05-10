@@ -11,7 +11,8 @@ RUN apt update -y && \
     apt install -y zip libzip-dev libpq-dev libicu-dev nginx supervisor &&\
     docker-php-ext-install zip pdo pdo_pgsql intl opcache && \
     pecl install redis && \
-    docker-php-ext-enable redis
+    docker-php-ext-enable redis && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY /docker/app/php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
