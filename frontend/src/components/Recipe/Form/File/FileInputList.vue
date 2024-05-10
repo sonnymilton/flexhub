@@ -1,11 +1,17 @@
 <script lang="ts" setup>
-import type {File} from '@/Models';
 import FileInput from "@/components/Recipe/Form/File/FileInput.vue";
 import IconExecutable from "@/components/icons/IconExecutable.vue";
+import {type File} from '@/Flexhub.api'
 
 const model = defineModel<Array<File>>({required: true})
 
-const newFile = () => model.value.push({path: '/path/to/file/filename', executable: false, content: ''})
+function addFile() {
+  model.value.push({
+    path: '/path/to/file/filename',
+    executable: false,
+    content: ''
+  })
+}
 
 </script>
 
@@ -33,7 +39,7 @@ const newFile = () => model.value.push({path: '/path/to/file/filename', executab
     </BAccordion>
 
     <BCol cols="2">
-      <BButton class="w-100" variant="outline-light" @click="newFile">Add</BButton>
+      <BButton class="w-100" variant="outline-light" @click="addFile">Add</BButton>
     </BCol>
   </BRow>
 </template>

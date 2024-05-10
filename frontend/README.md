@@ -1,39 +1,8 @@
-# flex-server-front
+# Flexhub frontend
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Code generation
+[Flexhub.api.ts](src/Flexhub.api.ts) is generated with [sta](https://github.com/acacode/swagger-typescript-api).
+Do not change anything inside the file.  
+Use
+`npx sta -t flexhub-api-template -p http://nginx/api/doc.json -o ./src -n Flexhub.api.ts`
+to generate new version of the file whenever you change API contracts on the backend.

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type {File} from "@/Models";
+import type {File} from "@/Flexhub.api";
 
 const model = defineModel<File>({required: true})
 </script>
@@ -18,7 +18,7 @@ const model = defineModel<File>({required: true})
 
     <BFormRow>
       <BFormGroup class="col-12" label="Content">
-        <BFormTextarea rows="20" v-model="model.content"></BFormTextarea>
+        <BFormTextarea v-model="model.content" rows="20"></BFormTextarea>
       </BFormGroup>
     </BFormRow>
   </BContainer>

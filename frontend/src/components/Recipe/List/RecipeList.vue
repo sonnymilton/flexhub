@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import {inject} from "vue";
-import type {Axios} from "axios";
-import type {RecipeListItem as RecipeListItemInterface} from "@/Models";
 import RecipeListItem from "@/components/Recipe/List/RecipeListItem.vue";
+import type {Api} from "@/Flexhub.api";
 
-const axios = inject<Axios>('axios') as Axios;
+const flexhub = inject('flexhubApi') as Api<unknown>;
 
-const response = await axios.get('/api/recipe/');
-const recipes = response.data as Array<RecipeListItemInterface>;
+const response = await flexhub.api.recipeList();
+const recipes = response.data;
 
 </script>
 

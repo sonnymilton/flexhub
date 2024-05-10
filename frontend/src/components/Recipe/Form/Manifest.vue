@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type {Manifest} from "@/Models";
 import InputList from "@/components/Common/InputList.vue";
 import KeyValueInputList from "@/components/Common/KeyValueInputList.vue";
+import type {Manifest} from "@/Flexhub.api";
 
 const manifest = defineModel<Manifest>({required: true})
 </script>
