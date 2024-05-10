@@ -14,19 +14,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(path: '/recipe', name: 'recipe_')]
+#[Route(path: '/recipe')]
 #[OA\Tag('Recipe')]
 final class RecipeController extends AbstractController
 {
     public function __construct(
         private readonly RecipeFactory $factory,
-        private readonly RecipeRepository $repository, private readonly RecipeRepository $recipeRepository,
+        private readonly RecipeRepository $repository
     ) {
     }
 
     /** @return iterable<RecipeListItem> */
     #[Route(path: '/', methods: ['GET'])]
-    #[OA\Response(response: 200, description: 'List recipes', content: new Model(type: RecipeListItem::class))]
+    #[OA\Response(response: 200, description: 'List recipes', content: new OA\JsonContent(type: 'array', items: new OA\Items(ref: new Model(type: RecipeListItem::class))))]
     public function list(): iterable
     {
         return $this->repository->getRecipeList();
@@ -53,6 +53,6 @@ final class RecipeController extends AbstractController
     #[OA\Response(response: 404, description: 'Recipe not found')]
     public function delete(string $vendor, string $packageName, string $version): void
     {
-        $this->recipeRepository->delete($vendor, $packageName, $version);
+        $this->repository->delete($vendor, $packageName, $version);
     }
 }
