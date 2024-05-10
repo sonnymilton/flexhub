@@ -11,7 +11,7 @@ final readonly class Manifest
     /**
      * @param array<string, string> $copyFromRecipe
      * @param array<string, string> $copyFromPackage
-     * @param array<string, string>         $env
+     * @param array<string, string> $env
      * @param array<string>         $gitignore
      * @param array<string, string> $composerScripts
      */
