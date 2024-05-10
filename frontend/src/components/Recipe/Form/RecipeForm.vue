@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import type {File, Recipe} from "@/Models";
 import Manifest from "@/components/Recipe/Form/Manifest.vue";
 import FileInputList from "@/components/Recipe/Form/File/FileInputList.vue";
 import {inject, type Ref, ref} from "vue";
-import {type Axios, AxiosError, HttpStatusCode} from "axios";
 import {useToast} from "bootstrap-vue-next";
 import {useRouter} from "vue-router";
-
+import {Api, type File, type Recipe} from "@/Flexhub.api";
 
 const recipe: Recipe = {
   vendor: '',
@@ -27,7 +25,8 @@ const recipe: Recipe = {
 const recipeRef: Ref<Recipe> = ref(recipe);
 const loading: Ref<boolean> = ref(false);
 
-const axios = inject<Axios>('axios') as Axios;
+const flexhub = inject('flexhubApi') as Api<unknown>
+
 const {show} = useToast();
 const router = useRouter();
 
@@ -35,18 +34,14 @@ async function save(recipe: Recipe): Promise<void> {
   try {
     loading.value = true;
 
-    await axios.post('/api/recipe/', recipe);
+    await flexhub.api.recipeCreate(recipe);
     await router.push({name: 'home'});
   } catch (error: any) {
-    if (error instanceof AxiosError) {
-      const response = error.response;
+    if (error instanceof Response) {
+      const response = await error.json();
 
-      if (!response) {
-        throw error;
-      }
-
-      if (response.status === HttpStatusCode.UnprocessableEntity) {
-        const {title, detail} = response.data;
+      if (response.status === 422) {
+        const {title, detail} = response;
 
         show?.({
           props: {
@@ -56,7 +51,19 @@ async function save(recipe: Recipe): Promise<void> {
             variant: 'danger',
           }
         });
+
+        return
       }
+
+      show?.({
+        props: {
+          title: 'API error',
+          body: 'An error occurred while interacting with the API',
+          variant: 'danger',
+        }
+      });
+
+      throw error;
     }
   } finally {
     loading.value = false;

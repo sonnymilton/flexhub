@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type {RecipeListItem} from "@/Models";
+import type {RecipeListItem} from "@/Flexhub.api";
 
 interface Props {
   recipe: RecipeListItem

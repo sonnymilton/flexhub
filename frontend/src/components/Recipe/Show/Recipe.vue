@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 
 import {inject, ref} from "vue";
-import type {Axios, AxiosResponse} from "axios";
-import type {Recipe} from "@/Models";
 import KeyValueList from "@/components/Common/KeyValueList.vue";
 import {useToast} from "bootstrap-vue-next";
 import {useRouter} from "vue-router";
+import type {Api, Recipe} from "@/Flexhub.api";
 
 interface Props {
   vendor: string,
@@ -14,12 +13,12 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const axios = inject('axios') as Axios;
 const router = useRouter();
 const {show} = useToast();
 
+const flexhub = inject('flexhubApi') as Api<unknown>;
 
-const response: AxiosResponse<Recipe> = await axios.get<Recipe>(`/api/recipe/${props.vendor}/${props.packageName}/${props.version}/`)
+const response = await flexhub.api.recipeDetail(props.vendor, props.packageName, props.version);
 const recipe: Recipe = response.data;
 
 const loading = ref(false);
@@ -28,7 +27,7 @@ async function deleteRecipe(recipe: Recipe) {
   loading.value = true;
 
   try {
-    await axios.delete(`/api/recipe/${recipe.vendor}/${recipe.packageName}/${recipe.version}`)
+    await flexhub.api.recipeDelete(recipe.vendor, recipe.packageName, recipe.version)
 
     show?.({
       props: {
