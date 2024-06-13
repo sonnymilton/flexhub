@@ -7,6 +7,7 @@ parameters:
     app.flex_recipes_dir: '%kernel.project_dir%/public/flex'
     app.flex_index_pathname: '%app.flex_recipes_dir%/index.json'
     app.messenger.redis_dsn: '%env(REDIS_URL)%/messages'
+    app.host_url: '%env(default::HOST_URL)%'
 
 services:
     # default configuration for services in *this* file
